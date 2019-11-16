@@ -7,6 +7,9 @@ const db = mongoose.connection;
 const router = express.Router();
 const host = 3888;
 
+//font installation
+// npm install --save-dev @fortawesome/fontawesome-fre  e
+
 //MongoDB Connection
 const mongoURI = 'mongodb+srv://steve-admin:0Ptimad8@iapplytics-cluster-u4l8g.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
@@ -24,7 +27,7 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 //Controllers
-const dietController = require('./controllers/diets');
+const dietController = require('./controllers/diet');
 app.use('/diets', dietController);
 
 //Port Listening

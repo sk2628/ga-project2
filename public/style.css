@@ -1,0 +1,18 @@
+@import "@material/card/mdc-card";
+
+.thumbnail{
+    width: 160px;
+}
+
+.my-card-content {
+    padding: 16px;
+  }
+
+.my-card {
+  height: 350px;
+  width: 350px;
+}
+
+a{
+  color: white;
+}

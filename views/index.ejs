@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="/style.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <script
+                src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+        <title>Calories Intake Tracker (Project 2 &copy;Steve Kang @ SEIF 2019)</title>
+    </head>
+    <body class="container">
+        
+        <h1>Calories Tracker</h1>
+        <a href="/diet/new"><button type="button" class="btn btn-secondary">New Diet</button></a><br/><br/>
+        <div style="display:flex; flex-wrap: wrap;">
+                <table class="table table-sm table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Picture</th>
+                            <th scope="col">Food/Drink</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (let i = 0; i < dietModel.length; i++){ %>
+                            <tr>
+                                <th scope="row"><%= i+1%></th>
+                                    <td><img class="thumbnail" src="<%= dietModel[i].image %>"></td>
+                                    <td><%= dietModel[i].foodName %></td>
+                                    <td><%= dietModel[i].foodDescription %></td>
+                                    <td>
+                                        <a href="/diets/<%=dietModel[i].id%>/edit">
+                                            <button type="button" class="btn btn-secondary">
+                                                <i class="material-icons md-light">edit</i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form action="/diets/<%=dietModel[i].id%>?_method=DELETE" method="POST">
+                                            <button type="button" class="btn btn-secondary">
+                                                <i class="material-icons md-light">delete</i>
+                                            </button>
+                                        </form>
+                                    </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                
+        </div>
+    </body> 
+</html>
