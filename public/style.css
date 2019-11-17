@@ -1,7 +1,9 @@
 @import "@material/card/mdc-card";
+@import "@material/textfield/mdc-text-field";
 
 .thumbnail{
-    width: 160px;
+    width: 120px;
+    height: 120px;
 }
 
 .my-card-content {

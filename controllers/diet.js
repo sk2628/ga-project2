@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Diet = require('../models/diet');
+const moment = require('moment'); //For handling of date/time in mongoose
 
 router.get('/seed', async (req, res) => {
     const newDiets =[
@@ -38,7 +39,11 @@ router.get('/', (req, res) => {
 
 //New Route 
 router.get('/new', (req, res) => {
-    res.render(`new.ejs`);
+    Diet.find({}, (error, data) => {
+        res.render(`new.ejs`, {
+            dietModel: data
+        });
+    })
 })
 
 //Create Route
@@ -48,7 +53,6 @@ router.post('/', (req, res) => {
             console.log("Error Detected: " + error.message);
         }
         console.log ( `New diet logged!` );
-        db.close();
     })
     res.redirect('/diets');
 })
@@ -68,10 +72,12 @@ router.get('/:id', (req, res) => {
 //Edit Route
 router.get('/:id/edit', (req, res) => {
     Diet.findById(req.params.id, (err, foundDiet) => {
+        var newDate = moment(foundDiet.consumeTime).format("YYYY-MM-DDThh:mm");
         res.render(
             'edit.ejs',
             {
-                dietModel: foundDiet
+                dietModel: foundDiet,
+                formattedConsumeTime: newDate
             }
         )
     })
