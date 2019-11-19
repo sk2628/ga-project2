@@ -31,7 +31,7 @@ router.get('/seed', async (req, res) => {
 //Index Route
 router.get('/', (req, res) => {
     Diet.find({}, (error, data) => {
-        res.render(`index.ejs`, {
+        res.render(`index3.ejs`, {
             dietModel: data
         });
     })
@@ -60,10 +60,12 @@ router.post('/', (req, res) => {
 //Show Route
 router.get('/:id', (req, res) => {
     Diet.findById(req.params.id, (err, foundDiet) => {
+        var newDate = moment(foundDiet.consumeTime).format("YYYY-MM-DDThh:mm");
         res.render(
             'show.ejs',
             {
-                dietModel: foundDiet
+                dietModel: foundDiet,
+                formattedConsumeTime: newDate
             }
         );
     });

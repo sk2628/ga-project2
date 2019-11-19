@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./partials/head.ejs %>
+    </head>
+    <body class="container">
+        <h1>Calories Tracker</h1>
+        <form action="/diets/<%=dietModel.id%>?_method=PUT" method="POST">
+            <img class="img-thumbnail" src="<%=dietModel.image%>"/>
+            <div class="form-group">
+                <label for="inputFood">Food</label>
+                <input type="text" class="form-control" id="inputFood" name="foodName" placeholder="Food or Drink" value="<%=dietModel.foodName%>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="inputFoodDescription">Description</label>
+                <textarea class="form-control" id="inputFoodDescription" name="foodDescription" rows="3" value="<%=dietModel.foodDescription%>" disabled></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputCalories">Calories</label>
+                <input type="number" id="inputCalories" name="calories" value="<%=dietModel.calories%>" disabled>
+            </div>
+            <div class="form-group">
+                    <label for="inputDateTime">Date/Time</label>
+                    <input type="datetime-local" id="inputDateTime" name="consumeTime" value="<%= formattedConsumeTime %>" disabled>
+            </div>
+            <a href="/diets"><input type="button" class="btn btn-primary" value="Back to Index"/></a><br/><br/>
+        </form>
+    </body> 
+</html>

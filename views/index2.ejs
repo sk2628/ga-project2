@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="/style.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <script
-                src="https://code.jquery.com/jquery-3.4.1.js"
-                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-                crossorigin="anonymous"></script>
-        <title>Calories Intake Tracker (Project 2 &copy;Steve Kang @ SEIF 2019)</title>
+        <% include ./partials/head.ejs %>
     </head>
-    <body>
+    <body class="container">
+        <% var shortDateFormat = "DD/MM hh:mm A";%>
         <h1>Calories Tracker</h1>
-        <a href="/diet/new"><button type="button" class="btn btn-secondary">New Diet</button></a><br/><br/>
-        <div class="mdc-card__actions">
-                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                   aria-pressed="false"
-                   aria-label="Add to favorites"
-                   title="Add to favorites">
-                 <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
-                 <i class="material-icons mdc-icon-button__icon">favorite_border</i>
-                </button>
-                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
-              </div>
+        <a href="/diets/new">
+            <button class="mdc-button mdc-button--raised"><span class="mdc-button__ripple"></span>New Meal</button>
+        </a><br/><br/>
+        <%for (let i = 0; i < dietModel.length; i++){ %>
+        <div class="mdc-card demo-card my-card">
+            <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
+                <a href="/diets/<%=dietModel[i].id%>"></a>
+                <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" 
+                    style="background-image: url(<%= dietModel[i].image %>)"></div>
+                <div class="demo-card__primary">
+                    <h2 class="demo-card__title"><%= moment(dietModel[i].consumeTime).format(shortDateFormat) %> - <%= dietModel[i].calories %> CAL</h2>
+                    <h3 class="demo-card__subtitle"><%= dietModel[i].foodName %></h3>
+                </div>
+                <div class="demo-card__secondary"><%= dietModel[i].foodDescription %></div>
+
+                <div class="mdc-card__action-icons">
+                    <a class="nocolor" href="/diets/<%=dietModel[i].id%>/edit">
+                        <button class="mdc-icon-button material-icons" title="Add to favorites">
+                            <i>edit</i>
+                        </button>
+                    </a>
+                    <form action="/diets/<%=dietModel[i].id%>?_method=DELETE" method="POST">
+                        <button class="mdc-icon-button material-icons" title="More options" data-mdc-ripple-is-unbounded="true">delete</button>
+                    </form>
+                </div>
+            </div>
+        
+        </div><% } %>    
     </body> 
 </html>

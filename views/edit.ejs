@@ -17,17 +17,18 @@
             </div>
             <div class="form-group">
                 <label for="inputCalories">Calories</label>
-                <input type="number" id="inputCalories" name="calories" value="<%=dietModel.calories%>"></textarea>
+                <input type="number" id="inputCalories" name="calories" value="<%=dietModel.calories%>">
             </div>
             <div class="form-group">
                     <label for="inputDateTime">Date/Time</label>
-                    <input type="datetime-local" id="inputDateTime" name="consumeTime" value="<%= formattedConsumeTime %>"></textarea>
+                    <input type="datetime-local" id="inputDateTime" name="consumeTime" value="<%= formattedConsumeTime %>">
             </div>
             <div class="form-group">
                 <label for="inputCalories">Food Image URL</label>
-                <input type="text" class="form-control" id="inputFoodImage" name="image" value="<%=dietModel.image%>"></textarea>
+                <input type="url" class="form-control" id="inputFoodImage" name="image" value="<%=dietModel.image%>">
             </div>
-            <input type="submit" class="btn btn-success" name="submit" value="Update Meal"/><br/><br/>
+            <input type="submit" class="btn btn-success" name="submit" value="Update Meal"/>
+            <a href="/diets"><input type="button" class="btn btn-primary" value="Back to Index"/></a><br/><br/> 
         </form>
     </body> 
 </html>

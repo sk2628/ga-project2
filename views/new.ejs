@@ -4,7 +4,7 @@
         <% include ./partials/head.ejs %>
     </head>
     <body class="container">
-        <% var displayDateFormat = "DD-MM-YYYY hh:mm A";%>
+        <% var displayDateFormat = "DD-MM-YYYY hh:mm a";%>
         <% var bindingDateFormat = "YYYY-MM-DDThh:mm";%>
         <h1>Calories Tracker</h1>
         <form action="/diets" method="POST">
@@ -14,63 +14,22 @@
             </div>
             <div class="form-group">
                 <label for="inputFoodDescription">Description</label>
-                <textarea class="form-control" id="inputFoodDescription" name="foodDescription" rows="3"></textarea>
+                <textarea class="form-control" id="inputFoodDescription" name="foodDescription" placeholder="Description" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="inputCalories">Calories</label>
-                <input type="number" id="inputCalories" name="calories"></textarea>
+                <input type="number" id="inputCalories" name="calories" placeholder="calories">
             </div>
             <div class="form-group">
                     <label for="inputDateTime">Date/Time</label>
-                    <input type="datetime-local" id="inputDateTime" name="consumeTime" value="<%= moment().format(bindingDateFormat)%>"></textarea>
+                    <input type="datetime-local" id="inputDateTime" name="consumeTime" value="<%= moment().format(bindingDateFormat)%>">
             </div>
             <div class="form-group">
                 <label for="inputCalories">Food Image URL</label>
-                <input type="text" class="form-control" id="inputFoodImage" name="image"></textarea>
+                <input type="url" class="form-control" id="inputFoodImage" name="image" placeholder="Image URL">
             </div>
-            <input type="submit" class="btn btn-success" name="submit" value="Add Meal"/><br/><br/>
+            <input type="submit" class="btn btn-success" name="submit" value="Add Meal"/>
+            <a href="/diets"><input type="button" class="btn btn-primary" value="Back to Index"/></a><br/><br/>
         </form>
-
-        <div style="display:flex; flex-wrap: wrap;">
-            <table class="table table-sm table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Picture</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Food/Drink</th>
-                        <th scope="col">Calories</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%for (let i = 0; i < dietModel.length; i++){ %>
-                        <tr>
-                            <th scope="row"><%= i+1%></th>
-                                <td><img class="thumbnail" src="<%= dietModel[i].image %>"></td>
-                                <td><%= moment(dietModel[i].consumeTime).format(displayDateFormat) %></td>
-                                <td><%= dietModel[i].foodName %></td>
-                                <td><%= dietModel[i].calories %></td>
-                                <td>
-                                    <a href="/diets/<%=dietModel[i].id%>/edit">
-                                        <button type="button" class="btn btn-secondary">
-                                            <i class="material-icons md-light">edit</i>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <form action="/diets/<%=dietModel[i].id%>?_method=DELETE" method="POST">
-                                        <button type="button" class="btn btn-secondary">
-                                            <i class="material-icons md-light">delete</i>
-                                        </button>
-                                    </form>
-                                </td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
-        <script src="app.js"></script>
     </body> 
 </html>
