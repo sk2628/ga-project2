@@ -8,7 +8,7 @@ const dietSchema = new Schema(
         image: { type: String },
         calories: { type: Number },
         consumeTime: { type: Date, default: Date.now },
-        personID: { type: Schema.Types.ObjectId, ref: "Person" }
+        personID: { type: Schema.Types.ObjectId, ref: "users" }
     },
     {
         timestamps: true

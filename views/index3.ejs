@@ -5,13 +5,19 @@
     </head>
     <body class="container">
         <% var shortDateFormat = "DD/MM hh:mm A";%>
-        <h1>Calories Tracker</h1>
+        <h1>Calories Tracker<%=currentUser.username%></h1>
         <a href="/diets/new">
             <button class="mdc-button mdc-button--raised"><span class="mdc-button__ripple"></span>New Meal</button>
-        </a><br/><br/>
+        </a>
+        <form action="/sessions?_method=DELETE" method="POST">
+            <button class="mdc-button mdc-button--raised"><span class="mdc-button__ripple"></span>Log Out</button><br/><br/>
+        </form>
             <div class="card-deck">
                 <%for (let i = 0; i < dietModel.length; i++){ %>
                 <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-muted mr-auto p-2"><%= moment(dietModel[i].consumeTime).format(shortDateFormat) %></h5>
+                    </div>
                     <img src="<%= dietModel[i].image %>" class="card-img-top" alt="<%= dietModel[i].foodName %>">
                     <div class="card-body">
                         <h5 class="card-title"><%= dietModel[i].foodName %></h5>

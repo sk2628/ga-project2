@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const diets = express.Router();
 const Diet = require('../models/diet');
 const moment = require('moment'); //For handling of date/time in mongoose
 
-router.get('/seed', async (req, res) => {
+//Route: diets/seed
+diets.get('/seed', async (req, res) => {
     const newDiets =[
         {
             foodName: 'Chicken Rice',
@@ -28,26 +29,34 @@ router.get('/seed', async (req, res) => {
     }
 })
 
-//Index Route
-router.get('/', (req, res) => {
-    Diet.find({}, (error, data) => {
-        res.render(`index3.ejs`, {
-            dietModel: data
-        });
-    })
+//Route: /diets
+diets.get('/', (req, res) => {
+    if (!req.session.currentUser){
+        res.render(`default.ejs`, {currentUser: req.session.currentUser});
+    }
+    else{
+        Diet.find({}, (error, data) => {
+            res.render(`index3.ejs`, {
+                dietModel: data,
+                currentUser: req.session.currentUser
+            });
+        })
+    }
 })
 
-//New Route 
-router.get('/new', (req, res) => {
+//Route: /diets/new
+diets.get('/new', (req, res) => {
     Diet.find({}, (error, data) => {
         res.render(`new.ejs`, {
-            dietModel: data
+            dietModel: data,
+            currentUser: req.session.currentUser
         });
     })
 })
 
-//Create Route
-router.post('/', (req, res) => {
+//Route: /diets
+diets.post('/', (req, res) => {
+    req.body.
     Diet.create(req.body, (error, data) => {
         if (error){
             console.log("Error Detected: " + error.message);
@@ -57,46 +66,48 @@ router.post('/', (req, res) => {
     res.redirect('/diets');
 })
 
-//Show Route
-router.get('/:id', (req, res) => {
+//Route: /diets/id
+diets.get('/:id', (req, res) => {
     Diet.findById(req.params.id, (err, foundDiet) => {
         var newDate = moment(foundDiet.consumeTime).format("YYYY-MM-DDThh:mm");
         res.render(
             'show.ejs',
             {
                 dietModel: foundDiet,
-                formattedConsumeTime: newDate
+                formattedConsumeTime: newDate,
+                currentUser: req.session.currentUser
             }
         );
     });
 })
 
-//Edit Route
-router.get('/:id/edit', (req, res) => {
+//Route: /diets/id/edit
+diets.get('/:id/edit', (req, res) => {
     Diet.findById(req.params.id, (err, foundDiet) => {
         var newDate = moment(foundDiet.consumeTime).format("YYYY-MM-DDThh:mm");
         res.render(
             'edit.ejs',
             {
                 dietModel: foundDiet,
-                formattedConsumeTime: newDate
+                formattedConsumeTime: newDate,
+                currentUser: req.session.currentUser
             }
         )
     })
 })
 
-//Update Route
-router.put('/:id', (req, res) => {
+//Route: /diets/id
+diets.put('/:id', (req, res) => {
     Diet.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel) => {
         res.redirect('/diets');
     })
 })
 
-//Destroy Route
-router.delete('/:id', (req, res) => {
+//Route: diets/id
+diets.delete('/:id', (req, res) => {
     Diet.findByIdAndDelete(req.params.id, (err, foundDiet) => {
         res.redirect('/diets');
     });
 })
 
-module.exports = router;
+module.exports = diets;
