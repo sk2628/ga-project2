@@ -3,52 +3,59 @@
     <head>
         <% include ./partials/head.ejs %>
     </head>
-    <body class="container">
-        <% var shortDateFormat = "DD-MM-YYYY hh:mm A";%>
-        <h1>Calories Tracker</h1>
-        <a href="/diets/new"><button type="button" class="btn btn-secondary">New Meal</button></a><br/><br/>
-        <div style="display:flex; flex-wrap: wrap;">
-            <table class="table table-sm table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Picture</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Food/Drink</th>
-                        <th scope="col">Calories</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <body>
+        <div class="container-grid">
+            <div class="card text-white bg-info mb-3 grid-item-stats" style="max-width: 18rem;">
+                    <div >
+                        <button id="idStats" class="btn btn-primary white-font">Calories Intake: <%=caloriesTotal %></button>
+                    </div>
+            </div>
+            <div class="grid-item-header-user white-font">
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        Welcome, <%=currentUser.username%>
+                        <button class="btn btn-danger grid-item-header">Log Out</button>
+                    </form>
+            </div>
+            <div class="grid-item-header ">
+                    <a href="/diets/new">
+                        <button class="btn btn-primary">New Meal</button>
+                    </a>
+                    
+                </div>
+            <div class="grid-item-title white-font">
+                <h1>Calories Tracker</h1>
+            </div>
+            
+            <% var shortDateFormat = "DD/MM hh:mm A";%>
+                <div class="card-deck grid-item-main">
                     <%for (let i = 0; i < dietModel.length; i++){ %>
-                        <tr>
-                            <th scope="row"><%= i+1%></th>
-                                <td>
-                                    <a href="/diets/<%=dietModel[i].id%>"><img class="thumbnail" src="<%= dietModel[i].image %>"></a>
-                                </td>
-                                <td><%= moment(dietModel[i].consumeTime).format(shortDateFormat) %></td>    
-                                <td><%= dietModel[i].foodName %></td>
-                                <td><%= dietModel[i].calories %></td>
-                                <td>
-                                    <a href="/diets/<%=dietModel[i].id%>/edit">
-                                        <button type="button" class="btn btn-secondary">
-                                            <i class="material-icons md-light">edit</i>
-                                        </button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <form action="/diets/<%=dietModel[i].id%>?_method=DELETE" method="POST">
-                                        <button type="submit" class="btn btn-secondary">
-                                            <i class="material-icons md-light">delete</i>
-                                        </button>
-                                    </form>
-                                </td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-                
-        </div>
+                    <div class="card mb-6" style="max-width:250px;min-width:250px;margin:5px;">
+                        <div class="card-header">
+                            <h6 class="text-muted mr-auto p-2"><%= moment(dietModel[i].consumeTime).format(shortDateFormat) %></h6>
+                        </div>
+                        <img src="<%= dietModel[i].image %>" class="card-img-top" alt="<%= dietModel[i].foodName %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= dietModel[i].foodName %></h5>
+                            <p class="card-text"><%= dietModel[i].foodDescription %></p>
+                        </div>
+                        <div class="card-footer d-flex">
+                            <h6 class="text-muted mr-auto p-2">Calories: <%= dietModel[i].calories %></h6>
+                            <a class="nocolor" href="/diets/<%=dietModel[i].id%>/edit">
+                                <button class="mdc-icon-button material-icons" title="Add to favorites">
+                                    <i>edit</i>
+                                </button>
+                            </a>
+                            
+                            <form action="/diets/<%=dietModel[i].id%>?_method=DELETE" method="POST">
+                                <button class="mdc-icon-button material-icons" title="More options" data-mdc-ripple-is-unbounded="true">delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %> 
+            
+                </div>
+                <script type="text/javascript">
+
+                </script>
     </body> 
 </html>

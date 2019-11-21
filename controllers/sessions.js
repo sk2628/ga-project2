@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 //Route: /sessions/new
 sessions.get('/new', (req, res) => {
-    res.render('sessions/new.ejs');
+    res.render('sessions/new.ejs', {userModel: null});
 })
 
 //Route: /sessions
@@ -17,14 +17,23 @@ sessions.post('/', (req, res) => {
             res.send('oops something went wrong')
         // if user not found, handle the error
         } else if (!foundUser) {
-            res.send('user not found!')
+            res.render
+            (
+                'sessions/new.ejs',
+                {userModel: "User ID not found. Please try again."}
+            );
+            //res.send('user not found!')
         }else {
             if(bcrypt.compareSync(req.body.password, foundUser.password)) {
                 req.session.currentUser = foundUser;
                 res.redirect('/diets');
                 // if passwords don't match, handle the error
             } else {
-                res.send('<a href="/">wrong password</a>')
+                res.render
+                (
+                    'sessions/new.ejs',
+                    {userModel: "Password is incorrect. Please try again."}
+                );
             }
         }
     })

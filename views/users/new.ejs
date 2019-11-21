@@ -2,29 +2,39 @@
 <html>
     <head>
         <% include ../partials/head.ejs %>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Create User</h1>
-        <div class="row">
-            <form class="col s12" action="/users" method="POST">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <label for="username">User Name</label>
-                        <input placeholder="username" id="username" type="text" class="validate" name="username" required>
-                    </div>
-                </div>
-                
-                <div class="row">
-                <div class="input-field col s12">
-                    <label for="password">Password</label>
-                    <input placeholder="password" id="password" type="password" class="validate" name="password" required>
-                </div>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>
-            </form>
-        </div>
+	</head>
+
+	<body class="background">
+		<div class="container-grid">
+			<div class="grid-item-center">
+				<div class="grid-item-details">
+					<form action="/users" method="POST">
+					<div class="card text-white bg-info mb-3 text-center" style="min-width: 28rem; max-width:28rem;">	
+						<div class="card-header">Create New User</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="input-field col s12">
+									<label for="username">User Name</label>
+									<input placeholder="User Name" id="username" type="text" class="validate" name="username" required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<label for="password">Password</label>
+									<input id="password" type="password" class="validate" name="password" required>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button class="btn waves-effect center" type="submit" name="action">Submit
+								<i class="material-icons right">send</i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		
     </body>
 </html>

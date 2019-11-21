@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./partials/head.ejs %>
+	</head>
+
+	<body class="background">
+		<div class="container h-100">
+			<div class="row h-100 justify-content-center align-items-center">
+                
+                    <h1>
+                        <% if(currentUser) { %>
+                            Welcome <%=currentUser.username%>!
+                            <a class="waves-effect waves-light btn" href="/sessions/">Log Out</a>
+                    </h1>
+                        <% } else { %>
+                        <h2>Please </h2>
+                            <a class="waves-effect waves-light btn" href="/users/new"><button class="btn btn-primary">Sign Up</button></a></h2>
+                        <h3>or</h3>
+                        <a class="waves-effect waves-light btn" href="/sessions/new"><button class="btn btn-primary">Log In</button></a>
+                        <% } %>
+			</div>
+		</div>
+    </body>
+</html>

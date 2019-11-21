@@ -35,10 +35,17 @@ diets.get('/', (req, res) => {
         res.render(`default.ejs`, {currentUser: req.session.currentUser});
     }
     else{
-        Diet.find({}, (error, data) => {
-            res.render(`index3.ejs`, {
+        Diet.find({user: req.session.currentUser._id}, (error, data) => {
+            console.log(data);
+                            
+            let caloriesTotal =  data.reduce(function(prev, cur) {
+                return prev + cur.calories;
+            }, 0);
+
+            res.render(`index.ejs`, {
                 dietModel: data,
-                currentUser: req.session.currentUser
+                currentUser: req.session.currentUser,
+                caloriesTotal: caloriesTotal
             });
         })
     }
@@ -56,7 +63,7 @@ diets.get('/new', (req, res) => {
 
 //Route: /diets
 diets.post('/', (req, res) => {
-    req.body.
+    req.body.user = req.session.currentUser._id;
     Diet.create(req.body, (error, data) => {
         if (error){
             console.log("Error Detected: " + error.message);

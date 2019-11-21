@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
     <head>
         <% include ./partials/head.ejs %>
-    </head>
-    <body>
-    <div class="container">
-        <h1>
-            <% if(currentUser) { %>
-                Welcome <%=currentUser.username%>!
-                <a class="waves-effect waves-light btn" href="/sessions/">Log Out</a>
-        </h1>
-            <% } else { %>
-            <h2>Please </h2>
-                <a class="waves-effect waves-light btn" href="/users/new">Sign Up</a></h2>
-            <h3>or</h3>
-                <a class="waves-effect waves-light btn" href="/sessions/new">Log In</a>
-            <% } %>
-        </div>
+	</head>
+
+	<body>
+		<div class="container-grid">
+			<div class="grid-item-center">
+                <h1 class="grid-item-details">
+                    <% if(currentUser) { %>
+                        Welcome <%=currentUser.username%>!
+                        <a class="waves-effect waves-light btn" href="/sessions/">Log Out</a>
+                </h1>
+                    <% } else { %>
+                <div class="grid-item-details">
+                    <h2>Please 
+                        <a class="waves-effect waves-light btn" href="/users/new"><button class="btn btn-primary">Sign Up</button></a>
+                        or
+                    <a class="waves-effect waves-light btn" href="/sessions/new"><button class="btn btn-primary">Log In</button></a></h2>
+                    <% } %>
+                </div>
+			</div>
+		</div>
     </body>
 </html>
