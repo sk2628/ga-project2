@@ -1,12 +1,16 @@
 $(() => {
-    const calcCalories = (calArray) => {
-        
-        // get sum of msgCount prop across all objects in array
-        let caloriesTotal = calArray.reduce(function(prev, cur) {
-            return prev + cur.calories;
-        }, 0);
-        
-        console.log('Total Calories:', caloriesTotal); 
-        $('#idStats').text(caloriesTotal);
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/guessNutrition?title=fried%20chicken",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "64ce528540msh9f0638c905da23ap1ea3cdjsnd4567ecd5279"
+        }
     }
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
 })
