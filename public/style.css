@@ -79,6 +79,19 @@ body{
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  min-height: 971px;
+  max-width: 1780px;
+  /* padding-top: 25px; */
+}
+
+.container-grid-index{
+  display: grid;
+  grid-template-columns: 15% 15% [main] 40% 15% 15%;
+  grid-template-rows: 15% 15% [main] 40% 25% 5%;
+  background-image: url('background.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   min-height: 1200px;
   max-width: 1780px;
   /* padding-top: 25px; */
@@ -119,7 +132,7 @@ body{
   grid-column-start: 3;
   grid-row-start: 1;
   justify-self: center;
-  align-self: center;
+  align-self: end;
 }
 
 .grid-item-details{
