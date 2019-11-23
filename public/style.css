@@ -79,9 +79,9 @@ body{
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-height: 971px;
+  min-height: 1200px;
   max-width: 1780px;
-  padding-top: 25px;
+  /* padding-top: 25px; */
 }
 
 .grid-item-center{

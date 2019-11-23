@@ -342,6 +342,7 @@
       "resolved": "https://registry.npmjs.org/kareem/-/kareem-2.3.1.tgz",
       "version": "2.3.1"
     },
+    "materialize-css": "^1.0.0-rc.2",
     "media-typer": {
       "integrity": "sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=",
       "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",

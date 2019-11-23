@@ -3,7 +3,7 @@
     <head>
         <% include ./partials/head.ejs %>
     </head>
-    <body class="container">
+    <body class="container white-font">
         <h1>Calories Tracker</h1>
         <form action="/diets/<%=dietModel.id%>?_method=PUT" method="POST">
             <img class="img-thumbnail" src="<%=dietModel.image%>"/>
@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="inputFoodDescription">Description</label>
-                <textarea class="form-control" id="inputFoodDescription" name="foodDescription" rows="3" value="<%=dietModel.foodDescription%>"></textarea>
+                <input type="text" class="form-control" id="inputFoodDescription" name="foodDescription" value="<%=dietModel.foodDescription%>">
             </div>
             <div class="form-group">
                 <label for="inputCalories">Calories</label>
