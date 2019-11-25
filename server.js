@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 const session = require('express-session')
 
-const PORT = 2800 || process.env.PORT;
+const PORT = process.env.PORT || 2888;
 const mongoURI = process.env.MONGODB_URI;
 
 const db = mongoose.connection;
