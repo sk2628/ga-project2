@@ -7,14 +7,11 @@ require('dotenv').config();
 const app = express();
 const session = require('express-session')
 
-const PORT = process.env.PORT;
-// const PORT = 2500;
+const PORT = 2800 || process.env.PORT;
 const mongoURI = process.env.MONGODB_URI;
 
 const db = mongoose.connection;
 const router = express.Router();
-
-// const shortDateFormat = "ddd @ h:mmA"; // this is just an example of storing a date format once so you can change it in one place and have it propagate
 
 //MongoDB Connection
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
