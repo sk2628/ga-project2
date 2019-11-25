@@ -10,13 +10,13 @@ Finally, this app is published on Heroku cloud platform, making it accessible to
 This app adhere to the basic CRUD application design guidelines, which we have created 7 routes  in the main diet.controller. They are: 
 | Route Name | URL | HTTP Verb | Description |
 | ------ | ------ | ------ | ------ |
-| Index | /diets | GET | Display a list of all meals
-| New | /diets/new | GET | Show form to create new meal
-| Create | /diets | POST | Add new meal to database, then redirect
-| Show | /diets/:id | GET | Show info about one meal
-| Edit | /diets/:id/edit | GET | Show edit form for one meal
-| Update | /diets/:id | PUT | Updating a particular meal, then redirect
-| Destroy | /diets/:id | DELETE | Delete a particular meal, then redirect
+| Index | /diets | GET | Display a list of all meals |
+| New | /diets/new | GET | Show form to create new meal |
+| Create | /diets | POST | Add new meal to database, then redirect |
+| Show | /diets/:id | GET | Show info about one meal |
+| Edit | /diets/:id/edit | GET | Show edit form for one meal |
+| Update | /diets/:id | PUT | Updating a particular meal, then redirect |
+| Destroy | /diets/:id | DELETE | Delete a particular meal, then redirect |
 
 ### Technologies 
 | Type | Technology | 
